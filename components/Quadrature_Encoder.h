@@ -5,12 +5,13 @@
  *      Author: Arthur
  */
 
-#ifndef MOTOR_QUADRATURE_ENCODER_H_
-#define MOTOR_QUADRATURE_ENCODER_H_
+#ifndef COMPONENTS_QUADRATURE_ENCODER_H_
+#define COMPONENTS_QUADRATURE_ENCODER_H_
 
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
+#include "../components/Motor.h"
 #include "inc/hw_ints.h"
 #include "inc/hw_gpio.h"
 #include "inc/hw_types.h"
@@ -25,7 +26,6 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/interrupt.h"
 
-#include "Motor.h"
 
 typedef struct
 {
@@ -49,4 +49,4 @@ extern void Motor_Init_QEI(void);
 extern void QEI0_IRQHandler(void);
 extern void QEI1_IRQHandler(void);
 extern void ConfigureUART0(void);
-#endif /* MOTOR_QUADRATURE_ENCODER_H_ */
+#endif /* COMPONENTS_QUADRATURE_ENCODER_H_ */

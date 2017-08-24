@@ -5,7 +5,9 @@
  *      Author: Arthur
  */
 
-#include "Quadrature_Encoder.h"
+#include "../components/Quadrature_Encoder.h"
+
+// 1040 pulse per round
 
 /*
  * pin assignment
@@ -124,7 +126,7 @@ void Motor_Init_QEI2(motor_qei_data_t *qei_data)
     //
     // Configure qei Filter
     //
-    QEIFilterConfigure(qei_data->base, QEI_FILTCNT_16);
+    QEIFilterConfigure(qei_data->base, QEI_FILTCNT_2);
     QEIFilterEnable(qei_data->base);
 
     //
@@ -160,11 +162,14 @@ void QEI_IRQHandler(motor_side_e side)
     if(status & QEI_INTTIMER)
     {
 //        UARTprintf("%s int_timer\n", side == MOTOR_LEFT ? "left" : "right");
+        qei_data_array[side].velocity
+        = QEIVelocityGet(qei_data_array[side].base) * MOTOR_QEI_VEL_FREQ * QEIDirectionGet(qei_data_array[side].base);
+//        UARTprintf("%s %d\n",side == MOTOR_LEFT ? "left" : "right", qei_data_array[side].velocity);
     }
 
     if(status & QEI_INTDIR)
     {
-        UARTprintf("%s int_dir\n", side == MOTOR_LEFT ? "left" : "right");
+//        UARTprintf("%s int_dir\n", side == MOTOR_LEFT ? "left" : "right");
         qei_data_array[side].dir = -qei_data_array[side].dir;
     }
 }

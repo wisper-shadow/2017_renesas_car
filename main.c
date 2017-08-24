@@ -9,6 +9,7 @@
 #include "inc/hw_memmap.h"
 #include "utils/uartstdio.h"
 #include "driverlib/rom.h"
+#include "driverlib/qei.h"
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
 #include "driverlib/timer.h"
@@ -16,8 +17,9 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/interrupt.h"
 
-#include "Motor/Motor.h"
-#include "Motor/Quadrature_Encoder.h"
+#include "components/Timer.h"
+#include "components/Motor.h"
+#include "components/Quadrature_Encoder.h"
 
 void main(void)
  {
@@ -25,6 +27,9 @@ void main(void)
     ConfigureUART0();
     Motor_PWM_Init();
     Motor_Init_QEI();
-    Motor_Set_Throttle(MOTOR_LEFT, 30);
-    while(1);
+    Motor_Set_Throttle(MOTOR_LEFT, 0);
+    while(1)
+    {
+        ;
+    }
 }

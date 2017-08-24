@@ -12,8 +12,9 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./main.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
-"./Motor/Motor.obj" \
-"./Motor/Quadrature_Encoder.obj" \
+"./components/Motor.obj" \
+"./components/Quadrature_Encoder.obj" \
+"./components/Timer.obj" \
 "./utils/uartstdio.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -28,10 +29,10 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
--include Motor/subdir_vars.mk
+-include components/subdir_vars.mk
 -include utils/subdir_vars.mk
 -include subdir_rules.mk
--include Motor/subdir_rules.mk
+-include components/subdir_rules.mk
 -include utils/subdir_rules.mk
 -include objects.mk
 
@@ -161,8 +162,8 @@ all: 2017_renesas_car.out
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "Motor\Motor.d" "Motor\Quadrature_Encoder.d" "utils\uartstdio.d" 
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "Motor\Motor.obj" "Motor\Quadrature_Encoder.obj" "utils\uartstdio.obj" 
+	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "components\Motor.d" "components\Quadrature_Encoder.d" "components\Timer.d" "utils\uartstdio.d" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "components\Motor.obj" "components\Quadrature_Encoder.obj" "components\Timer.obj" "utils\uartstdio.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
