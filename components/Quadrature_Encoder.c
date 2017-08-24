@@ -164,7 +164,7 @@ void QEI_IRQHandler(motor_side_e side)
 //        UARTprintf("%s int_timer\n", side == MOTOR_LEFT ? "left" : "right");
         qei_data_array[side].velocity
         = QEIVelocityGet(qei_data_array[side].base) * MOTOR_QEI_VEL_FREQ * QEIDirectionGet(qei_data_array[side].base);
-//        UARTprintf("%s %d\n",side == MOTOR_LEFT ? "left" : "right", qei_data_array[side].velocity);
+        UARTprintf("%s %d\n",side == MOTOR_LEFT ? "left" : "right", qei_data_array[side].velocity);
     }
 
     if(status & QEI_INTDIR)

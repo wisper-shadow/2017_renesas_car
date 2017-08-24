@@ -44,6 +44,7 @@ extern void _c_int00(void);
 
 extern void QEI0_IRQHandler(void);
 extern void QEI1_IRQHandler(void);
+extern void Timer0A_IntHandler(void);
 
 //*****************************************************************************
 //
@@ -105,7 +106,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // ADC Sequence 2
     IntDefaultHandler,                      // ADC Sequence 3
     IntDefaultHandler,                      // Watchdog timer
-    IntDefaultHandler,                      // Timer 0 subtimer A
+    Timer0A_IntHandler,                      // Timer 0 subtimer A
     IntDefaultHandler,                      // Timer 0 subtimer B
     IntDefaultHandler,                      // Timer 1 subtimer A
     IntDefaultHandler,                      // Timer 1 subtimer B
