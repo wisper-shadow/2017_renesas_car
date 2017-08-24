@@ -122,6 +122,12 @@ void Motor_Init_QEI2(motor_qei_data_t *qei_data)
     QEIEnable(qei_data->base);
 
     //
+    // Configure qei Filter
+    //
+    QEIFilterConfigure(qei_data->base, QEI_FILTCNT_16);
+    QEIFilterEnable(qei_data->base);
+
+    //
     // Configure qei velocity
     //
     QEIVelocityConfigure(qei_data->base, QEI_VELDIV_1, SysCtlClockGet() / MOTOR_QEI_VEL_FREQ);
