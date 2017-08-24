@@ -90,39 +90,39 @@ void Motor_PWM_Init(void)
         PWMOutputState(MOTOR_PWM_BASE, MOTOR_PWM_OUT_BIT, true);
 }
 
-void Motor_Set_Throttle(motor_side_e side, int pulse_width)
+void Motor_Set_Throttle(motor_side_e side, int speed)
 {
-    int pulse_tmp = pulse_width;
-    if(pulse_tmp > 0)
-        pulse_tmp = pulse_tmp;
-    if(pulse_tmp < 0)
-        pulse_tmp = pulse_tmp + MOTOR_PWM_PERIOD;
-    if(pulse_tmp == 0)
-        pulse_tmp = 1;
+    int32_t pulse_width = speed * MOTOR_PWM_PERIOD / 100;
+    if(pulse_width > 0)
+        pulse_width = pulse_width;
+    if(pulse_width < 0)
+        pulse_width = pulse_width + MOTOR_PWM_PERIOD;
+    if(pulse_width == 0)
+        pulse_width = 1;
 
     if(side == MOTOR_LEFT)
     {
-        if(pulse_width >= 0)
+        if(speed >= 0)
         {
-            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_LEFT_FRONT, (uint32_t)pulse_tmp);
+            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_LEFT_FRONT, (uint32_t)pulse_width);
             PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_LEFT_BACK, 1);
         }
         else
         {
-            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_LEFT_FRONT, (uint32_t)pulse_tmp);
+            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_LEFT_FRONT, (uint32_t)pulse_width);
             PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_LEFT_BACK, MOTOR_PWM_PERIOD);
         }
     }
     else
     {
-        if(pulse_width >= 0)
+        if(speed >= 0)
         {
-            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_RIGHT_FRONT, (uint32_t)pulse_tmp);
+            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_RIGHT_FRONT, (uint32_t)pulse_width);
             PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_RIGHT_BACK, 1);
         }
         else
         {
-            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_RIGHT_FRONT, (uint32_t)pulse_tmp);
+            PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_RIGHT_FRONT, (uint32_t)pulse_width);
             PWMPulseWidthSet(MOTOR_PWM_BASE, MOTOR_PWM_OUT_RIGHT_BACK, MOTOR_PWM_PERIOD);
         }
     }

@@ -27,19 +27,20 @@
 #include "driverlib/interrupt.h"
 
 #include "Quadrature_encoder.h"
+#include "Motor.h"
 
-#define Dest_Left_Vel       1040
-#define Dest_Right_Vel      1040
+#define Dest_Left_Vel           10
+#define Dest_Right_Vel          10
 
-#define DEFAULT_KP          1.50f
-#define DEFAULT_KI          0.00f
-#define DEFAULT_KD          0.00f
+#define DEFAULT_KP              0.90f
+#define DEFAULT_KI              2.00f
+#define DEFAULT_KD              0.00f
 
-#define DEFAULT_I_MAX       50.0f
-#define DEFAULT_OUT_MAX     80.0f
-#define DEFAULT_PID_FREQ    50.0f
+#define DEFAULT_I_MAX           100.0f
+#define DEFAULT_OUT_MAX         100.0f
+#define DEFAULT_PID_FREQ        10.0f
 
-#define DEFAULT_LPFITER         3.1830e-3
+#define DEFAULT_LPFITER         15.9155e-3
 // low pass filter:           0.079577472903393
 // f_cut = 1/(2*PI*cutoff_freq)
 // f_cut = 2 Hz -> _filter = 79.5774e-3

@@ -28,11 +28,12 @@ void main(void)
 {
     SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
     GPIO_Init();
+    PID_Init();
     Timer0A_Init();
     ConfigureUART0();
     Motor_PWM_Init();
     Motor_Init_QEI();
-    Motor_Set_Throttle(MOTOR_LEFT, 110);
+//    Motor_Set_Throttle(MOTOR_LEFT, 100);
     while(1)
     {
         ;

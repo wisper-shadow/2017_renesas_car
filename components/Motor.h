@@ -30,6 +30,6 @@ typedef enum
 }motor_side_e;
 
 extern void Motor_PWM_Init(void);
-extern void Motor_Set_Throttle(motor_side_e side, int pulse_width);     //pluse_width range: -400 - 400
+extern void Motor_Set_Throttle(motor_side_e side, int speed);
 
 #endif /* COMPONENTS_MOTOR_H_ */

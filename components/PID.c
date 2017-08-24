@@ -9,6 +9,7 @@
 
 PID_Params PID_Left_Motor;
 PID_Cfg PID_Left_Motor_Cfg;
+
 PID_Params PID_Right_Motor;
 PID_Cfg PID_Right_Motor_Cfg;
 
@@ -96,13 +97,18 @@ void Timer0A_IntHandler(void)
 {
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     time_stamp++;
-    if(time_stamp == 25)
+    if(time_stamp == 5)
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
-    if(time_stamp == 50)
+    if(time_stamp == 10)
     {
         time_stamp = 0;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
     }
+    PID_Left_Motor_Cfg.Error = Dest_Motor_Vel.dest_left - qei_data_array[0].velocity / 104;
+    PID_Right_Motor_Cfg.Error = Dest_Motor_Vel.dest_right - qei_data_array[1].velocity / 104;
     Motor_PID();
-
+//    if(Start_Left_PID)
+        Motor_Set_Throttle(MOTOR_LEFT, (int)PID_Left_Motor_Cfg.PID_OUT);
+//    if(Start_Right_PID)
+//        Motor_Set_Throttle(MOTOR_RIGHT, PID_Right_Motor_Cfg.PID_OUT);
 }
