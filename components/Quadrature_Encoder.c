@@ -49,22 +49,6 @@
 motor_qei_data_t qei_data_array[MOTOR_NUM] =
 {
         {
-                .periph = SYSCTL_PERIPH_QEI0,
-                .base = QEI0_BASE,
-                .swap_flag = MOTOR_QEI_PH0_SWAP_FLAG,
-                .iinterrupt = INT_QEI0,
-
-                .gpio_periph = MOTOR_QEI_PH0_GPIO_PERIPH,
-                .gpio_port = MOTOR_QEI_PH0_GPIO_PORT,
-                .gpio_pin = MOTOR_QEI_PH0_GPIO_PIN,
-                .gpio_cfg_a = MOTOR_QEI_PH0_GPIO_CFG_A,
-                .gpio_cfg_b = MOTOR_QEI_PH0_GPIO_CFG_B,
-
-                .dir = 1,
-                .velocity = 0,
-        },
-
-        {
                 .periph = SYSCTL_PERIPH_QEI1,
                 .base = QEI1_BASE,
                 .swap_flag = MOTOR_QEI_PH1_SWAP_FLAG,
@@ -75,6 +59,22 @@ motor_qei_data_t qei_data_array[MOTOR_NUM] =
                 .gpio_pin = MOTOR_QEI_PH1_GPIO_PIN,
                 .gpio_cfg_a = MOTOR_QEI_PH1_GPIO_CFG_A,
                 .gpio_cfg_b = MOTOR_QEI_PH1_GPIO_CFG_B,
+
+                .dir = 1,
+                .velocity = 0,
+        },
+
+        {
+                .periph = SYSCTL_PERIPH_QEI0,
+                .base = QEI0_BASE,
+                .swap_flag = MOTOR_QEI_PH0_SWAP_FLAG,
+                .iinterrupt = INT_QEI0,
+
+                .gpio_periph = MOTOR_QEI_PH0_GPIO_PERIPH,
+                .gpio_port = MOTOR_QEI_PH0_GPIO_PORT,
+                .gpio_pin = MOTOR_QEI_PH0_GPIO_PIN,
+                .gpio_cfg_a = MOTOR_QEI_PH0_GPIO_CFG_A,
+                .gpio_cfg_b = MOTOR_QEI_PH0_GPIO_CFG_B,
 
                 .dir = 1,
                 .velocity = 0,
@@ -176,12 +176,12 @@ void QEI_IRQHandler(motor_side_e side)
 
 void QEI0_IRQHandler(void)
 {
-    QEI_IRQHandler(MOTOR_LEFT);
+    QEI_IRQHandler(MOTOR_RIGHT);
 }
 
 void QEI1_IRQHandler(void)
 {
-    QEI_IRQHandler(MOTOR_RIGHT);
+    QEI_IRQHandler(MOTOR_LEFT);
 }
 
 void ConfigureUART0(void)

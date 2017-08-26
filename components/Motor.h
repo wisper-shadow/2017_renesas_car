@@ -26,7 +26,7 @@
 typedef enum
 {
     MOTOR_LEFT = 0,
-    MOTOR_RIGHT =1,
+    MOTOR_RIGHT = 1,
 }motor_side_e;
 
 extern void Motor_PWM_Init(void);

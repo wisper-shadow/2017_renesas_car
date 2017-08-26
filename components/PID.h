@@ -29,8 +29,8 @@
 #include "Quadrature_encoder.h"
 #include "Motor.h"
 
-#define Dest_Left_Vel           10
-#define Dest_Right_Vel          10
+#define Dest_Left_Vel           20
+#define Dest_Right_Vel          20
 
 #define DEFAULT_KP              0.90f
 #define DEFAULT_KI              2.00f

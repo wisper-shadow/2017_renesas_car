@@ -39,6 +39,22 @@ void PID_Init(void)
     PID_Left_Motor_Cfg.Derivative       = 0;
     PID_Left_Motor_Cfg.Last_Derivative  = 0;
     PID_Left_Motor_Cfg.PID_OUT          = 0;
+
+    PID_Right_Motor.Kp                   = DEFAULT_KP;
+    PID_Right_Motor.Ki                   = DEFAULT_KI;
+    PID_Right_Motor.Kd                   = DEFAULT_KD;
+    PID_Right_Motor.dt                   = (float)(1.0/DEFAULT_PID_FREQ);
+    PID_Right_Motor.I_MAX                = DEFAULT_I_MAX;
+    PID_Right_Motor.d_LPF                = DEFAULT_LPFITER;
+    PID_Right_Motor.OUT_MAX              = DEFAULT_OUT_MAX;
+
+    PID_Right_Motor_Cfg.Error            = 0;
+    PID_Right_Motor_Cfg.LastError        = 0;
+    PID_Right_Motor_Cfg.Proportion       = 0;
+    PID_Right_Motor_Cfg.Integrator       = 0;
+    PID_Right_Motor_Cfg.Derivative       = 0;
+    PID_Right_Motor_Cfg.Last_Derivative  = 0;
+    PID_Right_Motor_Cfg.PID_OUT          = 0;
 }
 
 void Motor_PID(void)
@@ -85,6 +101,49 @@ void Motor_PID(void)
     {
         PID_Left_Motor_Cfg.PID_OUT = -(PID_Left_Motor.OUT_MAX);
     }
+
+    PID_Right_Motor_Cfg.Proportion = PID_Right_Motor.Kp * PID_Right_Motor_Cfg.Error;
+
+    // calculate integrator constrain in i_max.
+    if((PID_Right_Motor.Ki != 0) && (PID_Right_Motor.dt != 0))
+    {
+        PID_Right_Motor_Cfg.Integrator += PID_Right_Motor.Ki * PID_Right_Motor_Cfg.Error * PID_Right_Motor.dt;
+        if (PID_Right_Motor_Cfg.Integrator < -(PID_Right_Motor.I_MAX))
+        {
+            PID_Right_Motor_Cfg.Integrator = -(PID_Right_Motor.I_MAX);
+        }
+        else if (PID_Right_Motor_Cfg.Integrator > PID_Right_Motor.I_MAX)
+        {
+            PID_Right_Motor_Cfg.Integrator = PID_Right_Motor.I_MAX;
+        }
+    }
+    else
+    {
+        PID_Right_Motor_Cfg.Integrator = 0;
+    }
+
+    // calculate instantaneous Derivative.
+    if((PID_Right_Motor.Kd != 0) && (PID_Right_Motor.dt != 0))
+    {
+        PID_Right_Motor_Cfg.Derivative = PID_Right_Motor.Kd * (PID_Right_Motor_Cfg.Error - PID_Right_Motor_Cfg.LastError) / PID_Right_Motor.dt;
+        // discrete low pass filter, cuts out the
+        // high frequency noise that can drive the controller crazy.
+        PID_Right_Motor_Cfg.Derivative = PID_Right_Motor_Cfg.Last_Derivative + (PID_Right_Motor.dt / ( PID_Right_Motor.d_LPF + PID_Right_Motor.dt)) * (PID_Right_Motor_Cfg.Derivative - PID_Right_Motor_Cfg.Last_Derivative);
+        // update state
+        PID_Right_Motor_Cfg.LastError = PID_Right_Motor_Cfg.Error;
+        PID_Right_Motor_Cfg.Last_Derivative = PID_Right_Motor_Cfg.Derivative;
+    }
+
+    PID_Right_Motor_Cfg.PID_OUT = PID_Right_Motor_Cfg.Proportion + PID_Right_Motor_Cfg.Integrator + PID_Right_Motor_Cfg.Derivative;
+
+    if (PID_Right_Motor_Cfg.PID_OUT > PID_Right_Motor.OUT_MAX)
+    {
+        PID_Right_Motor_Cfg.PID_OUT = PID_Right_Motor.OUT_MAX;
+    }
+    else if (PID_Right_Motor_Cfg.PID_OUT < -(PID_Right_Motor.OUT_MAX))
+    {
+        PID_Right_Motor_Cfg.PID_OUT = -(PID_Right_Motor.OUT_MAX);
+    }
 }
 
 void Set_Dest_Vel(int left, int right)
@@ -110,5 +169,5 @@ void Timer0A_IntHandler(void)
 //    if(Start_Left_PID)
         Motor_Set_Throttle(MOTOR_LEFT, (int)PID_Left_Motor_Cfg.PID_OUT);
 //    if(Start_Right_PID)
-//        Motor_Set_Throttle(MOTOR_RIGHT, PID_Right_Motor_Cfg.PID_OUT);
+        Motor_Set_Throttle(MOTOR_RIGHT, (int)PID_Right_Motor_Cfg.PID_OUT);
 }
