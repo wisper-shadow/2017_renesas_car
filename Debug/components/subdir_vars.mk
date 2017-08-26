@@ -4,45 +4,39 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../components/GPIO.c \
 ../components/Motor.c \
 ../components/PID.c \
-../components/Quadrature_Encoder.c \
-../components/Timer.c 
+../components/Peripheral_Config.c \
+../components/Quadrature_Encoder.c 
 
 OBJS += \
-./components/GPIO.obj \
 ./components/Motor.obj \
 ./components/PID.obj \
-./components/Quadrature_Encoder.obj \
-./components/Timer.obj 
+./components/Peripheral_Config.obj \
+./components/Quadrature_Encoder.obj 
 
 C_DEPS += \
-./components/GPIO.d \
 ./components/Motor.d \
 ./components/PID.d \
-./components/Quadrature_Encoder.d \
-./components/Timer.d 
+./components/Peripheral_Config.d \
+./components/Quadrature_Encoder.d 
 
 C_DEPS__QUOTED += \
-"components\GPIO.d" \
 "components\Motor.d" \
 "components\PID.d" \
-"components\Quadrature_Encoder.d" \
-"components\Timer.d" 
+"components\Peripheral_Config.d" \
+"components\Quadrature_Encoder.d" 
 
 OBJS__QUOTED += \
-"components\GPIO.obj" \
 "components\Motor.obj" \
 "components\PID.obj" \
-"components\Quadrature_Encoder.obj" \
-"components\Timer.obj" 
+"components\Peripheral_Config.obj" \
+"components\Quadrature_Encoder.obj" 
 
 C_SRCS__QUOTED += \
-"../components/GPIO.c" \
 "../components/Motor.c" \
 "../components/PID.c" \
-"../components/Quadrature_Encoder.c" \
-"../components/Timer.c" 
+"../components/Peripheral_Config.c" \
+"../components/Quadrature_Encoder.c" 
 
 

@@ -23,6 +23,9 @@ components/PID.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/timer.h
 components/PID.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/sysctl.h
 components/PID.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/pin_map.h
 components/PID.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/interrupt.h
+components/PID.obj: ../components/Peripheral_Config.h
+components/PID.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
+components/PID.obj: ../components/PID.h
 components/PID.obj: ../components/Quadrature_encoder.h
 components/PID.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
 components/PID.obj: ../components/../components/Motor.h
@@ -52,6 +55,9 @@ C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/timer.h:
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/sysctl.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/pin_map.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/interrupt.h: 
+../components/Peripheral_Config.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 
+../components/PID.h: 
 ../components/Quadrature_encoder.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 
 ../components/../components/Motor.h: 

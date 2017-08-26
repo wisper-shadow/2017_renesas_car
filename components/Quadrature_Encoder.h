@@ -52,5 +52,4 @@ extern motor_qei_data_t qei_data_array[2];
 extern void Motor_Init_QEI(void);
 extern void QEI0_IRQHandler(void);
 extern void QEI1_IRQHandler(void);
-extern void ConfigureUART0(void);
 #endif /* COMPONENTS_QUADRATURE_ENCODER_H_ */

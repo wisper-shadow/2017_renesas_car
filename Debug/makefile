@@ -12,11 +12,10 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./main.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
-"./components/GPIO.obj" \
 "./components/Motor.obj" \
 "./components/PID.obj" \
+"./components/Peripheral_Config.obj" \
 "./components/Quadrature_Encoder.obj" \
-"./components/Timer.obj" \
 "./utils/uartstdio.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -164,8 +163,8 @@ all: 2017_renesas_car.out
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "components\GPIO.d" "components\Motor.d" "components\PID.d" "components\Quadrature_Encoder.d" "components\Timer.d" "utils\uartstdio.d" 
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "components\GPIO.obj" "components\Motor.obj" "components\PID.obj" "components\Quadrature_Encoder.obj" "components\Timer.obj" "utils\uartstdio.obj" 
+	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "components\Motor.d" "components\PID.d" "components\Peripheral_Config.d" "components\Quadrature_Encoder.d" "utils\uartstdio.d" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "components\Motor.obj" "components\PID.obj" "components\Peripheral_Config.obj" "components\Quadrature_Encoder.obj" "utils\uartstdio.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

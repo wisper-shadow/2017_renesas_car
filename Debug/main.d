@@ -20,20 +20,19 @@ main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/timer.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/sysctl.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/pin_map.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/interrupt.h
-main.obj: ../components/PID.h
+main.obj: ../components/Peripheral_Config.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/inc/hw_gpio.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/inc/hw_types.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/utils/uartstdio.h
+main.obj: ../components/PID.h
+main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
+main.obj: ../components/Peripheral_Config.h
 main.obj: ../components/Quadrature_encoder.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
 main.obj: ../components/../components/Motor.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/pwm.h
-main.obj: ../components/GPIO.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
-main.obj: ../components/Timer.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h
 
 ../main.c: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/stdint.h: 
@@ -55,17 +54,16 @@ C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/timer.h:
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/sysctl.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/pin_map.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/interrupt.h: 
-../components/PID.h: 
+../components/Peripheral_Config.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/inc/hw_gpio.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/inc/hw_types.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/utils/uartstdio.h: 
+../components/PID.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 
+../components/Peripheral_Config.h: 
 ../components/Quadrature_encoder.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 
 ../components/../components/Motor.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/driverlib/pwm.h: 
-../components/GPIO.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 
-../components/Timer.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.5/include/string.h: 

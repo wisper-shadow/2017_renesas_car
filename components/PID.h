@@ -26,11 +26,12 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/interrupt.h"
 
+#include "Peripheral_Config.h"
 #include "Quadrature_encoder.h"
 #include "Motor.h"
 
-#define Dest_Left_Vel           20
-#define Dest_Right_Vel          20
+#define Dest_Left_Vel           0
+#define Dest_Right_Vel          0
 
 #define DEFAULT_KP              0.90f
 #define DEFAULT_KI              2.00f
@@ -80,7 +81,14 @@ typedef struct {
 
 extern void PID_Init(void);
 extern void Motor_PID(void);
-extern void Set_Dest_Vel(int left, int right);
 extern void Timer0A_IntHandler(void);
+
+extern void Key_GO(void);
+extern void Key_BACK(void);
+extern void Key_LEFT(void);
+extern void Key_RIGHT(void);
+extern void Key_STOP(void);
+extern void Key_LEFT_90(void);
+extern void Key_RIGHT_90(void);
 
 #endif /* COMPONENTS_PID_H_ */

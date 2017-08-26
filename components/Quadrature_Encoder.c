@@ -183,17 +183,3 @@ void QEI1_IRQHandler(void)
 {
     QEI_IRQHandler(MOTOR_LEFT);
 }
-
-void ConfigureUART0(void)
-{
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    GPIOPinConfigure(GPIO_PA0_U0RX);
-    GPIOPinConfigure(GPIO_PA1_U0TX);
-    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
-    UARTClockSourceSet(UART0_BASE, UART_CLOCK_PIOSC);
-    UARTStdioConfig(0, 115200, 16000000);
-    IntEnable(INT_UART0);
-    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
-    UARTprintf("system clock:%u\n", SysCtlClockGet());
-}

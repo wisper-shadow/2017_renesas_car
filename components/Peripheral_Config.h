@@ -1,12 +1,12 @@
 /*
- * Timer.h
+ * Peripheral_Config.h
  *
- *  Created on: 2017年8月24日
+ *  Created on: 2017年8月26日
  *      Author: Arthur
  */
 
-#ifndef COMPONENTS_TIMER_H_
-#define COMPONENTS_TIMER_H_
+#ifndef COMPONENTS_PERIPHERAL_CONFIG_H_
+#define COMPONENTS_PERIPHERAL_CONFIG_H_
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -16,6 +16,7 @@
 #include "inc/hw_gpio.h"
 #include "inc/hw_types.h"
 #include "inc/hw_memmap.h"
+
 #include "utils/uartstdio.h"
 
 #include "driverlib/rom.h"
@@ -27,6 +28,14 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/interrupt.h"
 
-extern void Timer0A_Init(void);
+#include "PID.h"
 
-#endif /* COMPONENTS_TIMER_H_ */
+extern bool is_alarm;
+
+extern void Peripheral_Enable(void);
+extern void Priority_Set(void);
+extern void UART0_IntHandler(void);
+extern void UART1_IntHandler(void);
+extern void UART2_IntHandler(void);
+
+#endif /* COMPONENTS_PERIPHERAL_CONFIG_H_ */
