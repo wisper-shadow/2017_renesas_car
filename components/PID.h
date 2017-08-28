@@ -33,8 +33,8 @@
 #define Dest_Left_Vel           0
 #define Dest_Right_Vel          0
 
-#define DEFAULT_KP              0.90f
-#define DEFAULT_KI              2.00f
+#define DEFAULT_KP              0.00f
+#define DEFAULT_KI              4.00f
 #define DEFAULT_KD              0.00f
 
 #define DEFAULT_I_MAX           100.0f

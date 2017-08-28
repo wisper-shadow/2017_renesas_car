@@ -164,11 +164,13 @@ void Timer0A_IntHandler(void)
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         if(is_alarm)
         {
-            ;
+            GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, 0);
+            GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_PIN_7);
         }
         else
         {
-            ;
+            GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PIN_6);
+            GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0);
         }
     }
 
@@ -176,7 +178,8 @@ void Timer0A_IntHandler(void)
     {
         time_stamp_0A = 0;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
-        ;
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PIN_6);
+        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0);
     }
 
     PID_Left_Motor_Cfg.Error = Dest_Motor_Vel.dest_left - qei_data_array[0].velocity / 104;
@@ -206,11 +209,11 @@ int Min(int a, int b)
 
 void Key_GO(void)
 {
-    PID_Clear();
+//    PID_Clear();
     if(Dest_Motor_Vel.dest_left == Dest_Motor_Vel.dest_right)
     {
-        Dest_Motor_Vel.dest_left += 5;
-        Dest_Motor_Vel.dest_right += 5;
+        Dest_Motor_Vel.dest_left += 10;
+        Dest_Motor_Vel.dest_right += 10;
         if(Dest_Motor_Vel.dest_left > 100)
             Dest_Motor_Vel.dest_left = 100;
         if(Dest_Motor_Vel.dest_right > 100)
@@ -225,11 +228,11 @@ void Key_GO(void)
 
 void Key_BACK(void)
 {
-    PID_Clear();
+//    PID_Clear();
     if(Dest_Motor_Vel.dest_left == Dest_Motor_Vel.dest_right)
     {
-        Dest_Motor_Vel.dest_left -= 5;
-        Dest_Motor_Vel.dest_right -= 5;
+        Dest_Motor_Vel.dest_left -= 10;
+        Dest_Motor_Vel.dest_right -= 10;
         if(Dest_Motor_Vel.dest_left < -100)
             Dest_Motor_Vel.dest_left = -100;
         if(Dest_Motor_Vel.dest_right < -100)
@@ -244,16 +247,16 @@ void Key_BACK(void)
 
 void Key_LEFT(void)
 {
-    PID_Clear();
-    Dest_Motor_Vel.dest_left -= 5;
+//    PID_Clear();
+    Dest_Motor_Vel.dest_left -= 2;
     if(Dest_Motor_Vel.dest_left < -100)
         Dest_Motor_Vel.dest_left = -100;
 }
 
 void Key_RIGHT(void)
 {
-    PID_Clear();
-    Dest_Motor_Vel.dest_right -= 5;
+//    PID_Clear();
+    Dest_Motor_Vel.dest_right -= 2;
     if(Dest_Motor_Vel.dest_right < -100)
         Dest_Motor_Vel.dest_right = -100;
 }
@@ -268,13 +271,13 @@ void Key_STOP(void)
 void Key_LEFT_90(void)
 {
     PID_Clear();
-    Dest_Motor_Vel.dest_left = -20;
-    Dest_Motor_Vel.dest_right = 20;
+    Dest_Motor_Vel.dest_left = -5;
+    Dest_Motor_Vel.dest_right = 5;
 }
 
 void Key_RIGHT_90(void)
 {
     PID_Clear();
-    Dest_Motor_Vel.dest_left = 20;
-    Dest_Motor_Vel.dest_right = -20;
+    Dest_Motor_Vel.dest_left = 5;
+    Dest_Motor_Vel.dest_right = -5;
 }

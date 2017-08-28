@@ -16,8 +16,12 @@ void GPIO_Init(void)
 {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3);
-
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_6 | GPIO_PIN_7);
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PIN_6);
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0);
 }
 
 void Timer0A_Init(void)
@@ -118,7 +122,7 @@ void ConfigureUART5(void)
     GPIOPinConfigure(GPIO_PE4_U5RX);
     GPIOPinConfigure(GPIO_PE5_U5TX);
     GPIOPinTypeUART(GPIO_PORTE_BASE, GPIO_PIN_4 | GPIO_PIN_5);
-    UARTConfigSetExpClk(UART5_BASE,  SysCtlClockGet(), 115200, (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    UARTConfigSetExpClk(UART5_BASE,  SysCtlClockGet(), 57600, (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
     UARTFIFOLevelSet(UART5_BASE, UART_FIFO_TX1_8, UART_FIFO_RX1_8);
     IntEnable(INT_UART5);
     UARTIntEnable(UART5_BASE, UART_INT_RX | UART_INT_RT);
@@ -139,7 +143,7 @@ void UART5_IntHandler(void)
             is_alarm = true;
             continue;
         }
-        if(uart5_rx == 0xe2)
+        if(uart5_rx == 0xe0)
         {
             is_alarm = false;
             continue;
