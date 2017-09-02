@@ -17,8 +17,11 @@ Dest_Vel Dest_Motor_Vel;
 
 uint32_t time_stamp_0A = 0;
 
-bool Start_Left_PID = false;
-bool Start_Right_PID = false;
+bool Start_Left_PID = true;
+bool Start_Right_PID = true;
+
+uint8_t throttle_Left_90 = 40;
+uint8_t throttle_Right_90 = 40;
 
 void PID_Init(void)
 {
@@ -185,9 +188,9 @@ void Timer0A_IntHandler(void)
     PID_Left_Motor_Cfg.Error = Dest_Motor_Vel.dest_left - qei_data_array[0].velocity / 104;
     PID_Right_Motor_Cfg.Error = Dest_Motor_Vel.dest_right - qei_data_array[1].velocity / 104;
     Motor_PID();
-//    if(Start_Left_PID)
+    if(Start_Left_PID)
         Motor_Set_Throttle(MOTOR_LEFT, (int)PID_Left_Motor_Cfg.PID_OUT);
-//    if(Start_Right_PID)
+    if(Start_Right_PID)
         Motor_Set_Throttle(MOTOR_RIGHT, (int)PID_Right_Motor_Cfg.PID_OUT);
 }
 
@@ -264,6 +267,10 @@ void Key_RIGHT(void)
 void Key_STOP(void)
 {
     PID_Clear();
+    Start_Left_PID = true;
+    Start_Right_PID = true;
+    throttle_Left_90 = 50;
+    throttle_Right_90 = 50;
     Dest_Motor_Vel.dest_left = 0;
     Dest_Motor_Vel.dest_right = 0;
 }
@@ -271,13 +278,24 @@ void Key_STOP(void)
 void Key_LEFT_90(void)
 {
     PID_Clear();
-    Dest_Motor_Vel.dest_left = -5;
-    Dest_Motor_Vel.dest_right = 5;
+//    Dest_Motor_Vel.dest_left = -5;
+//    Dest_Motor_Vel.dest_right = 5;
+    Start_Left_PID = false;
+    Start_Right_PID = false;
+    Motor_Set_Throttle(MOTOR_LEFT, -throttle_Left_90);
+    Motor_Set_Throttle(MOTOR_RIGHT, throttle_Left_90);
+    throttle_Left_90++;
+
 }
 
 void Key_RIGHT_90(void)
 {
     PID_Clear();
-    Dest_Motor_Vel.dest_left = 5;
-    Dest_Motor_Vel.dest_right = -5;
+//    Dest_Motor_Vel.dest_left = 5;
+//    Dest_Motor_Vel.dest_right = -5;
+    Start_Left_PID = false;
+    Start_Right_PID = false;
+    Motor_Set_Throttle(MOTOR_LEFT, throttle_Right_90);
+    Motor_Set_Throttle(MOTOR_RIGHT, -throttle_Right_90);
+    throttle_Right_90++;
 }
